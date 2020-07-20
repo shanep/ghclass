@@ -91,7 +91,7 @@ struct Repo
         const std::string r = repo_name();
         if (!r.empty())
         {
-            char *cwd = getwd(NULL);
+            char *cwd = getcwd(NULL,PATH_MAX);
             std::string dest(cwd);
             free(cwd);
             dest += "/";
@@ -103,7 +103,8 @@ struct Repo
             int error = git_clone(&repo, r.c_str(), dest.c_str(), &clone_opts);
             if (error < 0)
             {
-                const git_error *e = git_error_last();
+                //TODO: Update this call when libgit2 is updated on onyx
+                const git_error *e = giterr_last();
                 printf("Error %d/%d: %s\n", error, e->klass, e->message);
             }
             if (repo)
