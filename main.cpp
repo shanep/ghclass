@@ -3,10 +3,28 @@
 #include <sstream>
 #include <fstream>
 #include <iomanip>
-#include <unistd.h>
 #include <vector>
 #include <algorithm>
+
 #include <git2.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <pwd.h>
+
+int credentials_cb(git_cred **out, const char *url, const char *username_from_url,
+                   unsigned int allowed_types, void *payload)
+{
+    #define KEYDIR 256
+    //grab the home dir for the ssh keys.
+    struct passwd *pw = getpwuid(getuid());
+    const char *homedir = pw->pw_dir;
+    char privatekey[KEYDIR];
+    char publickey[KEYDIR];
+    snprintf(privatekey,KEYDIR,"%s/%s",homedir,".ssh/id_rsa");  
+    snprintf(publickey,KEYDIR,"%s/%s",homedir,".ssh/id_rsa.pub");
+
+   return git_cred_ssh_key_new(out,username_from_url,publickey,privatekey,"");
+}
 
 struct Repo
 {
@@ -49,12 +67,10 @@ struct Repo
     {
         if (this->github_username.empty())
         {
-            std::cout << "Student: " << this->identifier << " has not accepted the assignment!"
-                      << std::endl;
             return std::string("");
         }
         //build the URL
-        std::string rval("github.com/");
+        std::string rval("git@github.com:");
         rval += this->organization;
         rval += "/";
         rval += this->assignment;
@@ -73,11 +89,26 @@ struct Repo
     void checkout() const
     {
         const std::string r = repo_name();
-        if(!r.empty()){
-            
-            std::cout << r <<std::endl;
+        if (!r.empty())
+        {
+            char *cwd = getwd(NULL);
+            std::string dest(cwd);
+            free(cwd);
+            dest += "/";
+            dest += this->identifier;
+            std::cout << "Cloning: " << r << " to: " << dest << std::endl;
+            git_repository *repo = nullptr;
+            git_clone_options clone_opts = GIT_CLONE_OPTIONS_INIT;
+            clone_opts.fetch_opts.callbacks.credentials = credentials_cb;
+            int error = git_clone(&repo, r.c_str(), dest.c_str(), &clone_opts);
+            if (error < 0)
+            {
+                const git_error *e = git_error_last();
+                printf("Error %d/%d: %s\n", error, e->klass, e->message);
+            }
+            if (repo)
+                git_repository_free(repo);
         }
-
     }
 
     std::string identifier;
@@ -163,10 +194,10 @@ int main(int argc, char *argv[])
         std::cerr << "Required argument missing " << std::endl;
         usage();
     }
-    git_libgit2_init();
 
     //Get the list of repos
     std::vector<Repo> repos = parse_file(roster, org, assignment);
+    git_libgit2_init();
     //check them all out
     for (const Repo &r : repos)
     {
