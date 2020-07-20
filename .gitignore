@@ -1,3 +1,4 @@
+#Cmake stuff
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
@@ -9,3 +10,7 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+
+#dirs
+build
+.DS_store
