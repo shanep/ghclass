@@ -28,3 +28,10 @@ To download groups make sure and download your roster from
 classroom.github.com with group names. This tool should automatically
 detect the the roster has group names and will download the assignment
 into a folder named after the team.
+
+## Build instructions
+
+1. Clone this repo: ```git clone https://github.com/shanep/ghclass && cd ghclass```
+2. mkdir build && cd build && cmake .. && make
+3. Install ghclass into your local path and enjoy!
+4. Run the exe to get the help message
