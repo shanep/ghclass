@@ -1,6 +1,5 @@
-# Instructor setup Guide
+# Instructor Quickstart
 
-## Quick start
 - Log into your personal Github account, do not use the Boise State
   corporate account.
 - Create a new organization that is associated with your personal
