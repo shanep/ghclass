@@ -35,6 +35,7 @@ TA’s and GA’s.
   https://github.com/settings/organizations and create a new
   organization to use with your classroom. For example
   username-classroom.
+![img1](img/image1.png)
 
 ### Create a starter repo for your assignments
 
