@@ -38,4 +38,4 @@ into a folder named after the team.
 
 ## Guides
 
-- [Instructor setup guide](docs/instructor.md)
+- [Instructor setup guide](docs/Instructor.md)
