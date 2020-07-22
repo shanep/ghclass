@@ -1,4 +1,4 @@
-# Student Quickstart for Github Classrooms
+# Student Quickstart
 
 - Create a Github account if you don’t already have one at
   https://github.com/
