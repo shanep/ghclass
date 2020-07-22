@@ -35,3 +35,10 @@ into a folder named after the team.
 2. mkdir build && cd build && cmake .. && make
 3. Install ghclass into your local path and enjoy!
 4. Run the exe to get the help message
+
+## Guides
+
+- Instructor - [Setting up
+  classroom.github.com](https://docs.google.com/document/d/1hjZSpQHjSaPUAjTI0zDKYJksZ439i1U1zKnZsK4RxlI/edit#heading=h.rjl7sgqk17pd)
+- Student - [HOWTO Accept your
+  assignment](https://docs.google.com/document/d/1WmJu8F7sqbhold-88MGJNl2OaYQ1zArhgWoBBsMHeaA/edit?usp=sharing)
