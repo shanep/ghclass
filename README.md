@@ -40,5 +40,5 @@ into a folder named after the team.
 
 ## Guides
 
-- [Instructor setup guide](docs/Instructor.md)
+- [Instructor Quickstart](docs/Instructor.md)
 - [Student Quickstart](docs/Student.md)
