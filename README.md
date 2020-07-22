@@ -22,6 +22,8 @@ Cloning: git@github.com:shanep-classroom/p1-BSU-ShanePanter to: /Users/shane/rep
 
 ```
 
+![img](docs/img/usage.gif)
+
 ## Groups
 
 To download groups make sure and download your roster from
