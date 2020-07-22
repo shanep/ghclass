@@ -23,6 +23,6 @@
 ## Turning in your code
 
 - Turn in your code using the Github UI (no git knowledge necessary)
-![img](image13.png)
+![img](img/image13.png)
 - Turn in your code using git and the command line
-![img](image14.png)
+![img](img/image14.png)
