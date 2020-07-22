@@ -37,3 +37,5 @@ into a folder named after the team.
 4. Run the exe to get the help message
 
 ## Guides
+
+- [Instructor setup guide](docs/instructor.md)
