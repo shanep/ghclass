@@ -100,7 +100,7 @@ Use the downloader provided by GitHub called Classroom Assistant
 ### Command line (advanced)
 
 The command line downloader is this project, follow the build
-instructions above.
+instructions in the root README and install in your local path.
 
 ## (optional) Get an education account at Github
 
