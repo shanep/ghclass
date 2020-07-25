@@ -14,3 +14,7 @@ _deps
 #dirs
 build
 .DS_store
+/CPackConfig.cmake
+/CPackSourceConfig.cmake
+/DartConfiguration.tcl
+/ghclass
