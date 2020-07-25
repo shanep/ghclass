@@ -1,5 +1,8 @@
 # ghclass
 
+[![Build
+Status](https://travis-ci.com/shanep/ghclass.svg?branch=master)](https://travis-ci.com/shanep/ghclass)
+
 This is a command line tool to download your classroom.github.com
 repositories. It requires using the ssh protocol (https is not supported_).
 
