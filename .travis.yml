@@ -9,4 +9,5 @@ jobs:
       script: cmake . && make && make test
     - os: osx
       compiler: clang
+      install: brew install libgit2
       script: cmake . && make && make test
