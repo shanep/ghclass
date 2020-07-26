@@ -9,3 +9,4 @@ jobs:
       script: cmake . && make && make test
     - os: osx
       compiler: clang
+      script: cmake . && make && make test
