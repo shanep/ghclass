@@ -125,7 +125,7 @@ struct Repo
                std::string dest(cwd);
                free(cwd);
                dest += "/";
-               dest += repo_id();
+               dest += this->identifier;
                std::cout << "Cloning: " << r << " to: " << dest << std::endl;
                git_repository *repo = nullptr;
                git_clone_options clone_opts = GIT_CLONE_OPTIONS_INIT;
