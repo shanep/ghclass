@@ -188,7 +188,6 @@ static std::vector<Repo> parse_file(std::string fle, std::string org, std::strin
      {
           std::cerr << "Could not open roster: " << fle << std::endl;
      }
-     //C++11 should return using move semantics :)
      return repos;
 }
 
