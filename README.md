@@ -1,10 +1,20 @@
 # ghclass
 
-[![Build
-Status](https://travis-ci.com/shanep/ghclass.svg?branch=master)](https://travis-ci.com/shanep/ghclass)
+## Dependencies
 
-This is a command line tool to download your classroom.github.com
-repositories. It requires using the ssh protocol (https is not supported_).
+- [libgit2](https://libgit2.org/)
+
+## Build instructions
+
+1. Clone this repo: ```git clone https://github.com/shanep/ghclass && cd ghclass```
+2. mkdir build && cd build && cmake .. && make
+3. Install ghclass into your local path and enjoy!
+4. Run the exe to get the help message
+
+## Overview
+
+This is a command line tool to download your classroom.github.com repositories. It requires using
+the ssh protocol (https is not supported).
 
 Please read the [official
 docs](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
@@ -25,23 +35,14 @@ Cloning: git@github.com:shanep-classroom/p1-BSU-ShanePanter to: /Users/shane/rep
 
 ```
 
-![img](docs/img/usage.gif)
+![img](img/usage.gif)
 
 ## Groups
 
-To download groups make sure and download your roster from
-classroom.github.com with group names. This tool should automatically
-detect the the roster has group names and will download the assignment
-into a folder named after the team.
+To download groups make sure and download your roster from classroom.github.com with group
+names. This tool should automatically detect the the roster has group names and will download the
+assignment into a folder named after the team.
 
-## Build instructions
+## Extra help
 
-1. Clone this repo: ```git clone https://github.com/shanep/ghclass && cd ghclass```
-2. mkdir build && cd build && cmake .. && make
-3. Install ghclass into your local path and enjoy!
-4. Run the exe to get the help message
-
-## Guides
-
-- [Instructor Quickstart](docs/Instructor.md)
-- [Student Quickstart](docs/Student.md)
+Extra help is available at [https://shanepanter.com/](https://shanepanter.com/2021/01/11/github-classroom-setup.html)
