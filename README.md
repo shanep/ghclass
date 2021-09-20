@@ -45,4 +45,4 @@ assignment into a folder named after the team.
 
 ## Extra help
 
-Extra help is available at [https://shanepanter.com/](https://shanepanter.com/2021/01/11/github-classroom-setup.html)
+Extra help can be found [here](https://shanepanter.com/2021/01/11/github-classroom-setup.html)
