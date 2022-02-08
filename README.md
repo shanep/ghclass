@@ -1,8 +1,10 @@
 # ghclass
 
-## Dependencies
+## Overview
 
-- [libgit2](https://libgit2.org/)
+Command line downloader for github classroom. Requires the user to have
+[ssh](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) setup on your github
+account.
 
 ## Build instructions
 

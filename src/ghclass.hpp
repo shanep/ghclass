@@ -6,34 +6,10 @@
 #include <vector>
 #include <algorithm>
 
-#include <git2.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <pwd.h>
 
-#define KEYDIR 256
-
-
-/**
- * Callback for clone operation so we can clone using ssh keys
- * and private repositories.
- */
-int credentials_cb(git_cred **out, const char *url, const char *username_from_url,
-                   unsigned int allowed_types, void *payload)
-{
-
-     //grab the home dir for the ssh keys.
-     struct passwd *pw = getpwuid(getuid());
-     const char *homedir = pw->pw_dir;
-     char privatekey[KEYDIR];
-     char publickey[KEYDIR];
-     snprintf(privatekey,KEYDIR,"%s/%s",homedir,".ssh/id_rsa");
-     snprintf(publickey,KEYDIR,"%s/%s",homedir,".ssh/id_rsa.pub");
-
-     //This assumes a key with no passphrase if someone is using a
-     //passphrase I will need to implment some code to get it.
-     return git_cred_ssh_key_new(out,username_from_url,publickey,privatekey,"");
-}
 
 /**
  * Represents a Git repo in classroom.github.com
@@ -127,18 +103,7 @@ struct Repo
                dest += "/";
                dest += this->identifier;
                std::cout << "Cloning: " << r << " to: " << dest << std::endl;
-               git_repository *repo = nullptr;
-               git_clone_options clone_opts = GIT_CLONE_OPTIONS_INIT;
-               clone_opts.fetch_opts.callbacks.credentials = credentials_cb;
-               int error = git_clone(&repo, r.c_str(), dest.c_str(), &clone_opts);
-               if (error < 0)
-               {
-                    //TODO: Update this call when libgit2 is updated on onyx
-                    const git_error *e = giterr_last();
-                    printf("Error %d/%d: %s\n", error, e->klass, e->message);
-               }
-               if (repo)
-                    git_repository_free(repo);
+               //TODO
           }
      }
 
@@ -151,22 +116,7 @@ struct Repo
      std::string assignment;
 };
 
-static void usage()
-{
-     std::cout << std::left << std::setw(30) << "-r <class roster>"
-               << ":[required] File name of the class roster (ex. class_roster.csv)"
-               << std::endl;
-     std::cout << std::left << std::setw(30) << "-o <organization>"
-               << ":[required] Name of your Github organization"
-               << std::endl;
-     std::cout << std::left << std::setw(30) << "-a <assignment name>"
-               << ":[required] Name of the assignment"
-               << std::endl;
-     std::cout << std::left << std::setw(30) << "-h"
-               << ":Help"
-               << std::endl;
-     exit(1);
-}
+
 
 static std::vector<Repo> parse_file(std::string fle, std::string org, std::string assignment)
 {
@@ -191,48 +141,4 @@ static std::vector<Repo> parse_file(std::string fle, std::string org, std::strin
      return repos;
 }
 
-int main(int argc, char *argv[])
-{
-     int opt, s;
-     if (argc == 1)
-     {
-          usage();
-          return 0;
-     }
-     std::string org, assignment, roster;
-     while ((opt = getopt(argc, argv, "r:o:a:h")) != EOF)
-     {
-          switch (opt)
-          {
-          case 'r':
-               roster = optarg;
-               break;
-          case 'o':
-               org = optarg;
-               break;
-          case 'a':
-               assignment = optarg;
-               break;
-          case '?':
-          case 'h':
-               usage();
-               break;
-          }
-     }
-     if (roster.empty() || org.empty() || assignment.empty())
-     {
-          std::cerr << "Required argument missing " << std::endl;
-          usage();
-     }
 
-     //Get the list of repos
-     std::vector<Repo> repos = parse_file(roster, org, assignment);
-     git_libgit2_init();
-     //check them all out
-     for (const Repo &r : repos)
-     {
-          r.clone_repo();
-     }
-     git_libgit2_shutdown();
-     return 0;
-}

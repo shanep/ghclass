@@ -1,18 +1,54 @@
-cmake_minimum_required(VERSION 3.0.0)
-project(ghclass VERSION 0.1.0)
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
-set(CMAKE_CXX_STANDARD 11)
+cmake_minimum_required(VERSION 3.15)
 
-find_package(git2 REQUIRED)
+# Don't allow in-source building
+if (CMAKE_BINARY_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+  message(FATAL_ERROR "Building in-source is not supported! Create a build dir and remove ${CMAKE_SOURCE_DIR}/CMakeCache.txt")
+endif()
 
-include(CTest)
+project(ghclass LANGUAGES CXX VERSION 0.1)
+
+## Set C++ standard
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+# control where the static and shared libraries are built so that on windows
+# we don't need to tinker with the path to run the executable
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+
+configure_file(config.h.in config.h)
+
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+
+## Add address sanatizers for all builds
+## Probably want to exclude this if doing a release build
+set(SANITIZE_ADDRESS TRUE)
+find_package(Sanitizers)
+
+
+## Add the src to the build
+add_subdirectory(src)
+## Add the tests to the build
 enable_testing()
+add_subdirectory(tests)
 
-add_executable(ghclass main.cpp)
-target_include_directories(ghclass PRIVATE ${GIT2_INCLUDE_PATH})
-target_link_libraries(ghclass PRIVATE ${GIT2_LIBRARY})
-
-
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+## Packaging
+include(InstallRequiredSystemLibraries)
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/License.txt")
+set(CPACK_PACKAGE_VERSION_MAJOR "${lab_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${lab_VERSION_MINOR}")
+set(CPACK_SOURCE_GENERATOR "ZIP")
+set(CPACK_PACKAGE_NAME "warmup-lab")
+set(CPACK_SOURCE_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}")
+set(CPACK_SOURCE_IGNORE_FILES
+    /.vscode
+    /.vagrant
+    /.git
+    /dist
+    /.*build.*
+    /\\\\.DS_Store
+    solution\.cpp
+)
 include(CPack)
+
