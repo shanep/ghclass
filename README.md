@@ -1,13 +1,5 @@
 # ghclass
 
-## Overview
-
-Command line downloader for github classroom. Requires the user to have
-[ssh](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) setup on your github
-account.
-
-## Build instructions
-
 1. Clone this repo: ```git clone https://github.com/shanep/ghclass && cd ghclass```
 2. mkdir build && cd build && cmake .. && make
 3. Install ghclass into your local path and enjoy!
@@ -27,12 +19,12 @@ first assignment you need to download the roster (classroom_roster.csv) and plac
 directory that you want your repos downloaded to.
 
 ``` bash
-$ ./ghclass
+$ ./ghc
 -r <class roster>             :[required] File name of the class roster (ex. class_roster.csv)
 -o <organization>             :[required] Name of your Github organization
 -a <assignment name>          :[required] Name of the assignment
 -h                            :Help
-$ ./ghclass -r classroom_roster.csv -o shanep-classroom -a p1
+$ ./ghc -r classroom_roster.csv -o shanep-classroom -a p1
 Cloning: git@github.com:shanep-classroom/p1-BSU-ShanePanter to: /Users/shane/repos/ghclass/data/BSU-ShanePanter
 
 ```

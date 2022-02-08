@@ -1,3 +1,7 @@
+#include <iostream>
+#include <iomanip>
+#include <unistd.h>
+#include <vector>
 #include "ghclass.hpp"
 
 static void usage()

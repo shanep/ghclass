@@ -14,9 +14,12 @@ FetchContent_MakeAvailable(gtest)
 add_executable(test-ghclass test-ghclass.cpp)
 target_link_libraries(test-ghclass PRIVATE gtest_main ghclass)
 
+# Grab the test data 
+file(COPY data/classroom_roster_groups.csv DESTINATION ${PROJECT_BINARY_DIR})
+file(COPY data/classroom_roster.csv DESTINATION ${PROJECT_BINARY_DIR})
 
-add_sanitizers(test-lab)
+add_sanitizers(test-ghclass)
 
 include(CTest)
 include(GoogleTest)
-gtest_discover_tests(test-lab)
+gtest_discover_tests(test-ghclass)

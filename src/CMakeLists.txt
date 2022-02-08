@@ -1,6 +1,8 @@
 
 
 add_library(ghclass ghclass.cpp)
+add_executable(ghc ghclass.cpp main.cpp)
+
 
 include(GenerateExportHeader)
 generate_export_header(ghclass)
