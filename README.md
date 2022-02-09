@@ -29,11 +29,23 @@ Cloning: git@github.com:shanep-classroom/p1-BSU-ShanePanter to: /Users/shane/rep
 
 ```
 
+### Get the class roster
+
+![class roster image](img/class-roster0.jpg)
+
+### Get the assignment name and organization
+
+![assignment and org](img/assignment-org.jpg)
+
 ## Groups
 
 To download groups make sure and download your roster from classroom.github.com with group names.
 This tool should automatically detect the the roster has group names and will download the
 assignment into a folder named after the team.
+
+## Demo
+
+![demo](img/demo.gif)de
 
 ## Extra help
 
