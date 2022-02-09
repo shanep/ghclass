@@ -52,7 +52,8 @@ int main(int argc, char *argv[])
                usage();
                break;
           case 'v':
-               std::cerr << "version:" << ghclass_VERSION_MAJOR << std::endl;
+               std::cerr << "version: " << ghclass_VERSION_MAJOR << "." << ghclass_VERSION_MAJOR_VERSION_MINOR << std::endl;
+               exit(1);
           }
      }
      if (roster.empty() || org.empty() || assignment.empty())

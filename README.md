@@ -29,14 +29,13 @@ Cloning: git@github.com:shanep-classroom/p1-BSU-ShanePanter to: /Users/shane/rep
 
 ```
 
-![img](img/usage.gif)
-
 ## Groups
 
-To download groups make sure and download your roster from classroom.github.com with group
-names. This tool should automatically detect the the roster has group names and will download the
+To download groups make sure and download your roster from classroom.github.com with group names.
+This tool should automatically detect the the roster has group names and will download the
 assignment into a folder named after the team.
 
 ## Extra help
 
-Extra help can be found [here](https://shanepanter.com/2021/01/11/github-classroom-setup.html)
+Extra help regarding using github classrooms can be found
+[here](https://shanepanter.com/2021/01/11/github-classroom-setup.html).
