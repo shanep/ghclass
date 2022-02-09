@@ -25,7 +25,8 @@ public:
 
      /**
       * @brief Construct the repo name url based on the naming conventions specifed by
-      * classroom.github.com
+      * classroom.github.com returns an empty string if the student has not accepted the 
+      * assignment.
       *
       * @return The url of the repo
       */
@@ -38,6 +39,14 @@ public:
       * @return false If the clone failed
       */
      bool clone_repo() const;
+
+     /**
+      * @brief Returns the path to the repo destination. For individual repos this will be 
+      * the students email and for groups this will be the team name.
+      * 
+      * @return The fully qualified path to the repo.
+      */
+     std::string repo_dest_path() const;
 
 private:
      /**

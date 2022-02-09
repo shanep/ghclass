@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <vector>
 #include <algorithm>
+#include <filesystem>
 
 #include <unistd.h>
 #include <sys/types.h>
@@ -74,23 +75,88 @@ std::string Repo::repo_name() const
      return rval;
 }
 
+std::string Repo::repo_dest_path() const
+{
+     char *cwd = getcwd(NULL, 0);
+     std::string dest(cwd);
+     free(cwd);
+     dest += "/";
+     if (!this->group_name.empty())
+     {
+          dest += this->group_name;
+     }
+     else
+     {
+          dest += this->identifier;
+     }
+     return dest;
+}
+
 /**
  * Do the actual clone operation
  */
 bool Repo::clone_repo() const
 {
-     const std::string r = repo_name();
-     if (!r.empty())
+     if (this->repo_name().empty())
      {
-          char *cwd = getcwd(NULL, 0);
-          std::string dest(cwd);
-          free(cwd);
-          dest += "/";
-          dest += this->identifier;
-          std::cout << "Cloning: " << r << " to: " << dest << std::endl;
-          // TODO
+          //Student has not accepted the assignment so we can't clone anything.
+          return false;
      }
-     return false;
+     // check if destination already exists because it was already cloned (group)
+     const std::string dest = repo_dest_path();
+     if(std::filesystem::exists(std::filesystem::path(dest)))
+     {
+          std::cerr << "Repo is already cloned!" << std::endl;
+     }
+
+     pid_t child = fork();
+     if (child == -1)
+     {
+          std::cerr << "fork error! something is horribly wrong with your computer!" << std::endl;
+          abort();
+     }
+
+     if (child == 0)
+     {
+          // exec git to clone the repo
+          const std::string to_clone = repo_name();        
+          std::cout << "cloning: " << to_clone << std::endl;
+          execlp("git", "git", "clone", to_clone.c_str(), dest.c_str(), (char *)NULL);
+          std::cerr << "Failed to exec!" << std::endl;
+          std::cerr << "-->repo name was: " << to_clone << std::endl;
+          std::cerr << "-->destination was: " << dest << std::endl;
+          exit(1);
+     }
+
+     pid_t w;
+     int wstatus;
+     // Wait for the clone operation to finish. Maybe convert this to async??
+     do
+     {
+          w = waitpid(child, &wstatus, WUNTRACED | WCONTINUED);
+          if (w == -1)
+          {
+               std::cerr << "waitpid returned -1 the clone operation may have failed" << std::endl;
+          }
+          if (WIFEXITED(wstatus))
+          {
+               printf("exited, status=%d\n", WEXITSTATUS(wstatus));
+          }
+          else if (WIFSIGNALED(wstatus))
+          {
+               printf("killed by signal %d\n", WTERMSIG(wstatus));
+          }
+          else if (WIFSTOPPED(wstatus))
+          {
+               printf("stopped by signal %d\n", WSTOPSIG(wstatus));
+          }
+          else if (WIFCONTINUED(wstatus))
+          {
+               printf("continued\n");
+          }
+     } while (!WIFEXITED(wstatus) && !WIFSIGNALED(wstatus));
+
+     return WIFEXITED(wstatus);
 }
 
 std::vector<Repo> parse_file(std::string fle, std::string org, std::string assignment)
