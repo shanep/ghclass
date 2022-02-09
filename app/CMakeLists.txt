@@ -8,5 +8,8 @@ target_compile_options(ghc PRIVATE
   "$<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall;-Wextra;-Werror;-pedantic;>"
 )
 
-add_sanitizers(ghc)
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+  add_sanitizers(ghc)
+endif()
+
 install(TARGETS ghc DESTINATION bin)

@@ -17,8 +17,11 @@ target_link_libraries(test-ghclass PRIVATE gtest_main ghclass)
 # Grab the test data 
 file(COPY data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+  add_sanitizers(test-ghclass)
+endif()
 
-add_sanitizers(test-ghclass)
+
 
 include(CTest)
 include(GoogleTest)

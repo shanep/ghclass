@@ -16,6 +16,8 @@ target_compile_options(ghclass PRIVATE
   "$<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall;-Wextra;-Werror;-pedantic;>"
 )
 
-add_sanitizers(ghclass)
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+  add_sanitizers(ghclass)
+endif()
 
 install(TARGETS ghclass DESTINATION lib)

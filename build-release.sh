@@ -3,8 +3,8 @@ if [ ! -d ./build ]
 then
     mkdir build
     cd build
-    cmake .. 
+    cmake -DCMAKE_BUILD_TYPE=Release .. 
+    cmake --build .
 else 
     echo "Build directory is already present. Run clean.sh first!"
 fi
-

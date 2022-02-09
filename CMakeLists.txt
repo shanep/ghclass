@@ -21,11 +21,11 @@ configure_file(config.h.in config.h)
 
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
-## Add address sanatizers for all builds
-## Probably want to exclude this if doing a release build
-set(SANITIZE_ADDRESS TRUE)
-find_package(Sanitizers)
-
+## Add address sanatizers for debug builds
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+  set(SANITIZE_ADDRESS TRUE)
+  find_package(Sanitizers)
+endif()
 
 ## Add the library to the build
 add_subdirectory(src)
