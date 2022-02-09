@@ -9,6 +9,7 @@
 
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <pwd.h>
 #include "ghclass.hpp"
 
@@ -128,7 +129,7 @@ bool Repo::clone_repo() const
      if (child == 0)
      {
           // exec git to clone the repo
-          const std::string to_clone = repo_name();        
+          const std::string to_clone = repo_name();
           std::cout << "cloning: " << to_clone << std::endl;
           execlp("git", "git", "clone", to_clone.c_str(), dest.c_str(), (char *)NULL);
           std::cerr << "Failed to exec!" << std::endl;
