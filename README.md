@@ -1,8 +1,9 @@
 # ghclass
 
 1. Clone this repo: ```git clone https://github.com/shanep/ghclass && cd ghclass```
-2. mkdir build && cd build && cmake .. && make
-3. Install ghclass into your local path and enjoy!
+2. `./build-release.sh`
+3. The executable ghc should be in the top level build directory ready to use
+4. Install `ghc` in your path e.x. `$HOME/bin`
 4. Run the exe to get the help message
 
 ## Overview
@@ -35,7 +36,7 @@ Cloning: git@github.com:shanep-classroom/p1-BSU-ShanePanter to: /Users/shane/rep
 
 ### Get the assignment name and organization
 
-![assignment and org](img/assignment-org.jpg)
+![assignment and org](img/assignment-org0.jpg)
 
 ## Groups
 
