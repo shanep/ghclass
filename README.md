@@ -41,12 +41,14 @@ Cloning: git@github.com:shanep-classroom/p1-BSU-ShanePanter to: /Users/shane/rep
 ## Groups
 
 To download groups make sure and download your roster from classroom.github.com with group names.
-This tool should automatically detect the the roster has group names and will download the
+This tool should automatically detect that the roster has group names and will download the
 assignment into a folder named after the team.
+
+![group names](img/group-names0.jpg)
 
 ## Demo
 
-![demo](img/demo.gif)de
+![demo](img/demo.gif)
 
 ## Extra help
 
