@@ -1,5 +1,4 @@
 #include <vector>
-#include <filesystem>
 #include <gtest/gtest.h>
 #include <ghclass.hpp>
 
@@ -42,11 +41,11 @@ TEST(LiveDownload, individual)
 
      // remove any existing downloads from previous test runs
      const std::string dest = repos[1].repo_dest_path();
-     auto fp = std::filesystem::path(repos[1].repo_dest_path());
-     std::filesystem::remove_all(fp);
+     //auto fp = std::filesystem::path(repos[1].repo_dest_path());
+     //std::filesystem::remove_all(fp);
 
      EXPECT_TRUE(repos[1].clone_repo());
-     EXPECT_TRUE(std::filesystem::exists(fp));
+     EXPECT_TRUE(path_exists(dest));
 }
 
 TEST(LiveDownload, group)
@@ -62,13 +61,13 @@ TEST(LiveDownload, group)
 
      // remove any existing downloads from previous test runs
      const std::string dest = repos[1].repo_dest_path();
-     auto fp = std::filesystem::path(repos[1].repo_dest_path());
-     std::filesystem::remove_all(fp);
+     //auto fp = std::filesystem::path(repos[1].repo_dest_path());
+     //std::filesystem::remove_all(fp);
      EXPECT_TRUE(repos[1].clone_repo());
-     EXPECT_TRUE(std::filesystem::exists(fp));
+     EXPECT_TRUE(path_exists(dest));
 
      // now when we attempt the next student who is on the same team the clone shut succeed
      //because it is already there
      EXPECT_TRUE(repos[2].clone_repo());
-     EXPECT_TRUE(std::filesystem::exists(fp));
+     EXPECT_TRUE(path_exists(dest));
 }

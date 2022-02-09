@@ -1,4 +1,7 @@
+#pragma once
 #include <string>
+#include <sys/stat.h>
+
 /**
  * Represents a Git repo in classroom.github.com
  */
@@ -101,3 +104,12 @@ private:
  * @return std::vector<Repo> A vector of repos that can be cloned
  */
 std::vector<Repo> parse_file(std::string fle, std::string org, std::string assignment);
+
+
+/**
+ * @brief Determines if a path exists on the filesystem.
+ * 
+ * @param s the path to check
+ * @return true if the path exists
+ */
+bool path_exists(const std::string &s);

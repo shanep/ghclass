@@ -5,7 +5,6 @@
 #include <iomanip>
 #include <vector>
 #include <algorithm>
-#include <filesystem>
 
 #include <unistd.h>
 #include <sys/types.h>
@@ -113,7 +112,7 @@ bool Repo::clone_repo() const
      }
      // check if destination already exists because it was already cloned (group)
      const std::string dest = repo_dest_path();
-     if(std::filesystem::exists(std::filesystem::path(dest)))
+     if(path_exists(dest))
      {
           std::cerr << "Repo is already cloned!" << std::endl;
           return true;
@@ -196,4 +195,16 @@ std::vector<Repo> parse_file(std::string fle, std::string org, std::string assig
           std::cerr << "Could not open roster: " << fle << std::endl;
      }
      return repos;
+}
+
+/**
+ * @brief Determines if a path exists on the filesystem.
+ * 
+ * @param s the path to check
+ * @return true if the path exists
+ */
+bool path_exists(const std::string &s)
+{
+  struct stat buffer;
+  return (stat (s.c_str(), &buffer) == 0);
 }
