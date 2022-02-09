@@ -66,15 +66,19 @@ int main(int argc, char *argv[])
      std::vector<Repo> repos = parse_file(roster, org, assignment);
      for (const Repo &r : repos)
      {
-          bool rval = r.clone_repo();
-          if (rval)
+          if (!r.repo_name().empty())
           {
-               std::cout << "  clone was successful" << std::endl;
+               std::cout << "Attempting to clone: " << r.repo_name() << std::endl;
+               if (!r.clone_repo())
+               {
+                    std::cout << "--> could not clone repo" << std::endl;
+               }
           }
           else
           {
-               std::cout << "  clone FAILED! " << std::endl;
+               std::cout << "Student: " << r.student_id() << " appears to not have accepted the assignment" << std::endl;
           }
+          std::cout << std::endl;
      }
      return 0;
 }

@@ -59,6 +59,14 @@ std::string Repo::repo_id() const
      return this->github_username;
 }
 
+std::string Repo::student_id() const
+{
+     if(this->identifier.empty()){
+          return "Unknown - check your roster";
+     }
+     return this->identifier;
+}
+
 std::string Repo::repo_name() const
 {
      if (this->github_username.empty())
@@ -107,6 +115,7 @@ bool Repo::clone_repo() const
      if(std::filesystem::exists(std::filesystem::path(dest)))
      {
           std::cerr << "Repo is already cloned!" << std::endl;
+          return true;
      }
 
      pid_t child = fork();
