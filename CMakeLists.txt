@@ -27,8 +27,10 @@ set(SANITIZE_ADDRESS TRUE)
 find_package(Sanitizers)
 
 
-## Add the src to the build
+## Add the library to the build
 add_subdirectory(src)
+## Add the executable to the build
+add_subdirectory(app)
 ## Add the tests to the build
 enable_testing()
 add_subdirectory(tests)
@@ -39,7 +41,7 @@ set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 set(CPACK_PACKAGE_VERSION_MAJOR "${ghclass_VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "${ghclass_VERSION_MINOR}")
 set(CPACK_SOURCE_GENERATOR "ZIP")
-set(CPACK_PACKAGE_NAME "ghclass")
+set(CPACK_PACKAGE_NAME "ghc")
 set(CPACK_SOURCE_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}")
 set(CPACK_SOURCE_IGNORE_FILES
     /.vscode

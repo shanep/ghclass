@@ -74,5 +74,8 @@
         "map": "cpp",
         "set": "cpp",
         "variant": "cpp"
-    }
+    },
+    "cSpell.words": [
+        "ghclass"
+    ]
 }

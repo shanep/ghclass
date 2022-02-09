@@ -20,10 +20,9 @@ Repo::Repo(std::string line, std::string org, std::string assign)
      int count = 0;
      while (std::getline(iss, token, ','))
      {
-          //remove the leading and trailing "
-          //TODO: Maybe write a proper csv parser :)
-          token.pop_back();
-          token.replace(0, 1, "");
+          //remove any ". This assumes that 
+          auto noquotes = std::remove(token.begin(),token.end(),'"');
+          token.erase(noquotes, token.end());
 
           switch (count)
           {
@@ -115,8 +114,13 @@ std::vector<Repo> parse_file(std::string fle, std::string org, std::string assig
           std::getline(roster, line);
           while (std::getline(roster, line))
           {
-               Repo r(line, org, assignment);
-               repos.push_back(r);
+               //ignore any blank lines 
+               if(line.find_first_not_of(' ') != std::string::npos)
+               {
+                    Repo r(line, org, assignment);
+                    repos.push_back(r);
+               }
+
           }
           roster.close();
      }

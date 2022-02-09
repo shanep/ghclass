@@ -1,12 +1,11 @@
-
-
 add_library(ghclass ghclass.cpp)
-add_executable(ghc ghclass.cpp main.cpp)
 
 
 include(GenerateExportHeader)
 generate_export_header(ghclass)
 
+## Set the include directories for both the headers
+## and the generated export headers for linking
 target_include_directories(ghclass PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
   $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)

@@ -2,9 +2,8 @@
 #include <iomanip>
 #include <unistd.h>
 #include <vector>
-#include "config.h"
-#include "ghclass.hpp"
-
+#include <config.h>
+#include <ghclass.hpp>
 
 static void usage()
 {
@@ -18,14 +17,17 @@ static void usage()
                << ":[required] Name of the assignment"
                << std::endl;
      std::cout << std::left << std::setw(30) << "-h"
-               << ":Help"
+               << ":help"
+               << std::endl;
+     std::cout << std::left << std::setw(30) << "-v"
+               << ":version"
                << std::endl;
      exit(1);
 }
 
 int main(int argc, char *argv[])
 {
-     int opt, s;
+     int opt;
      if (argc == 1)
      {
           usage();
@@ -50,7 +52,7 @@ int main(int argc, char *argv[])
                usage();
                break;
           case 'v':
-               std::cerr<<"version:"<< ghclass_VERSION_MAJOR <<std::endl;
+               std::cerr << "version:" << ghclass_VERSION_MAJOR << std::endl;
           }
      }
      if (roster.empty() || org.empty() || assignment.empty())
