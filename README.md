@@ -53,4 +53,4 @@ assignment into a folder named after the team.
 ## Extra help
 
 Extra help regarding using github classrooms can be found
-[here](https://shanepanter.com/2021/01/11/github-classroom-setup.html).
+[here](https://shanepanter.com/teaching/github-classroom-instructor.html).
