@@ -16,7 +16,7 @@ docs](https://docs.github.com/en/github/authenticating-to-github/connecting-to-g
 to setup your ssh keys.
 
 After you have created your classroom on github and your students have all accepted their
-first assignment you need to download the roster (classroom_roster.csv) and place it in the
+first assignment you need to [download the roster](https://docs.github.com/en/education/manage-coursework-with-github-classroom/teach-with-github-classroom/manage-classrooms#about-classroom-rosters) (classroom_roster.csv) and place it in the
 directory that you want your repos downloaded to.
 
 ``` bash
