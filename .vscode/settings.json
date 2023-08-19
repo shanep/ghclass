@@ -73,7 +73,14 @@
         "condition_variable": "cpp",
         "map": "cpp",
         "set": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "__verbose_abort": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "thread": "cpp",
+        "unordered_set": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp"
     },
     "cSpell.words": [
         "ghclass"

@@ -105,11 +105,6 @@ std::string Repo::repo_dest_path() const
  */
 bool Repo::clone_repo() const
 {
-     if (this->repo_name().empty())
-     {
-          //Student has not accepted the assignment so we can't clone anything.
-          return false;
-     }
      // check if destination already exists because it was already cloned (group)
      const std::string dest = repo_dest_path();
      if(path_exists(dest))
@@ -122,7 +117,7 @@ bool Repo::clone_repo() const
      if (child == -1)
      {
           std::cerr << "fork error! something is horribly wrong with your computer!" << std::endl;
-          abort();
+          abort(); //Bail out if we can't fork not much we can do!
      }
 
      if (child == 0)
@@ -131,9 +126,10 @@ bool Repo::clone_repo() const
           const std::string to_clone = repo_name();
           std::cout << "cloning: " << to_clone << std::endl;
           execlp("git", "git", "clone", to_clone.c_str(), dest.c_str(), (char *)NULL);
-          std::cerr << "Failed to exec!" << std::endl;
+          std::cerr << "Failed to exec git clone!" << std::endl;
           std::cerr << "-->repo name was: " << to_clone << std::endl;
           std::cerr << "-->destination was: " << dest << std::endl;
+          std::cerr << "Is git installed an on your PATH?" << std::endl;
           exit(1);
      }
 
@@ -165,7 +161,7 @@ bool Repo::clone_repo() const
           }
      } while (!WIFEXITED(wstatus) && !WIFSIGNALED(wstatus));
 
-     return WIFEXITED(wstatus);
+     return WEXITSTATUS(wstatus) == 0;
 }
 
 std::vector<Repo> parse_file(std::string fle, std::string org, std::string assignment)

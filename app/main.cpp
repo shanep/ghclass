@@ -25,6 +25,8 @@ static void usage()
      exit(1);
 }
 
+#define MAX_RETRY 4
+
 int main(int argc, char *argv[])
 {
      int opt;
@@ -69,9 +71,12 @@ int main(int argc, char *argv[])
           if (!r.repo_name().empty())
           {
                std::cout << "Attempting to clone: " << r.repo_name() << std::endl;
-               if (!r.clone_repo())
-               {
-                    std::cout << "--> could not clone repo" << std::endl;
+               bool success = r.clone_repo();
+               for(int retry =1; !success && retry < MAX_RETRY; retry++ ){
+                    std::cerr << "--> could not clone repo attempt " << retry + 1 << " of " << MAX_RETRY << " delay:" << retry << " sec"<<std::endl;
+                    //Need to put in a delay because github will throttle you
+                    sleep(retry);
+                    success = r.clone_repo();
                }
           }
           else
