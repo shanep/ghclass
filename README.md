@@ -1,5 +1,10 @@
 # ghclass
 
+This has been replaced with an offical command line application.
+
+[Classroom CLI](https://docs.github.com/en/education/manage-coursework-with-github-classroom/teach-with-github-classroom/using-github-classroom-with-github-cli)
+
+
 1. Clone this repo: ```git clone https://github.com/shanep/ghclass && cd ghclass```
 2. `./build-release.sh`
 3. The executable ghc should be in the top level build directory ready to use
