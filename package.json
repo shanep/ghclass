@@ -1,0 +1,25 @@
+{
+  "name": "ghc",
+  "version": "1.0.0",
+  "description": "Clone student repos created from classroom.github.com",
+  "main": "./src/main.mjs",
+  "bin": "./src/main.mjs",
+  "scripts": {
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shanep/ghclass.git"
+  },
+  "keywords": [
+    "education",
+    "classroom.github.com"
+  ],
+  "author": "Shane K. Panter",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shanep/ghclass/issues"
+  },
+  "homepage": "https://github.com/shanep/ghclass#readme"
+
+}

@@ -1,8 +1,4 @@
-# ghclass
-
-This has been replaced with an offical command line application.
-
-[Classroom CLI](https://docs.github.com/en/education/manage-coursework-with-github-classroom/teach-with-github-classroom/using-github-classroom-with-github-cli)
+# ghc
 
 
 1. Clone this repo: ```git clone https://github.com/shanep/ghclass && cd ghclass```
