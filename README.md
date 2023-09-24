@@ -7,12 +7,8 @@ Minimum requirements:
 
 ## Overview
 
-This is a command line tool to download your classroom.github.com repositories.
-It requires using the ssh protocol (https is not supported).
-
-Please read the [official
-docs](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
-to setup your ssh keys.
+This is a command line tool to download your classroom.github.com repositories using the ssh protocol.
+Please read the [official docs](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh) to setup your ssh keys.
 
 After you have created your classroom on github and your students have all
 accepted their first assignment you need to [download the
@@ -20,38 +16,10 @@ roster](https://docs.github.com/en/education/manage-coursework-with-github-class
 (classroom_roster.csv) and place it in the directory that you want your repos
 downloaded to.
 
-``` bash
-$ ./ghc
--r <class roster>             :[required] File name of the class roster (ex. class_roster.csv)
--o <organization>             :[required] Name of your Github organization
--a <assignment name>          :[required] Name of the assignment
--h                            :Help
-$ ./ghc -r classroom_roster.csv -o shanep-classroom -a p1
-Cloning: git@github.com:shanep-classroom/p1-BSU-ShanePanter to: /Users/shane/repos/ghclass/data/BSU-ShanePanter
+This project also demonstrates the following features that students will learn about in several classes.
 
-```
-
-### Get the class roster
-
-![class roster image](img/class-roster0.jpg)
-
-### Get the assignment name and organization
-
-![assignment and org](img/assignment-org0.jpg)
-
-## Groups
-
-To download groups make sure and download your roster from classroom.github.com
-with group names. This tool should automatically detect that the roster has
-group names and will download the assignment into a folder named after the team.
-
-![group names](img/group-names0.jpg)
-
-## Demo
-
-![demo](img/demo.gif)
-
-## Extra help
-
-Extra help regarding using github classrooms can be found
-[here](https://shanepanter.com/teaching/github-classroom-instructor.html).
+- [ ] Continuous Integration (CI)
+- [ ] Continuous Deployment (CD)
+- [ ] Unit testing with Function Mocks
+- [ ] Code coverage
+- [ ] Github Releases

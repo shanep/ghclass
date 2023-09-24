@@ -5,6 +5,14 @@ import util from 'node:util';
 
 const execp = util.promisify(exec);
 
+type Student = {
+  email: string | undefined,
+  githubUserName: string | undefined,
+  githubID: string | undefined,
+  name: string | undefined,
+  team: string | undefined,
+};
+
 /**
  * Returns a GitHub url using the ssh protocol
  * @param {object} student A populated student object
@@ -12,11 +20,9 @@ const execp = util.promisify(exec);
  * @param {string} project A project identifier
  * @return {string} A string formatted to clone a github repo over SSH
  */
-export function gitHubRepoUrlSSH(student, organization, project) {
-  return `git@github.com:${
-    organization}/${project}-${
-    student.team || student.githubUserName
-  } ${student.team || student.email}`;
+export function gitHubRepoUrlSSH(student: Student, organization: string, project: string): string {
+  return `git@github.com:${organization}/${project}-${student.team || student.githubUserName
+    } ${student.team || student.email}`;
 }
 
 /**
@@ -25,19 +31,19 @@ export function gitHubRepoUrlSSH(student, organization, project) {
  * @param {string} path Path to file
  * @return {Array} An array containing the all the students
  */
-export async function loadRosterCSV(path) {
+export async function loadRosterCSV(path: string): Promise<Student[]> {
   const fle = await fs.readFile(path, { encoding: 'utf-8' });
-  const csv = parse(fle);
-  const rval = [];
+  const csv: Array<Array<string>> = parse(fle);
+  const rval: Student[] = [];
   // Groups can have spaces in them and need to be replaced with -
   // to match the format that classrooms is using
   csv.slice(1).forEach((student) => {
-    const tmp = {
+    const tmp: Student = {
       email: student[0],
       githubUserName: student[1],
       githubID: student[2],
       name: student[3],
-      team: student.length === 5 ? student[4].replaceAll(' ', '-') : null,
+      team: student[4]?.replaceAll(' ', '-')
     };
     rval.push(tmp);
   });
@@ -54,10 +60,10 @@ export async function loadRosterCSV(path) {
  * @param {string} project The project name
  * @param {string} roster The path to the class roster
  */
-export async function cloneAll(org, project, roster) {
+export async function cloneAll(org: string, project: string, roster: string) {
   console.log(`Clone with options: ${org} ${project} ${roster}`);
   const students = await loadRosterCSV(roster);
-  const clones = [];
+  const clones: Promise<void | { stdout: string; stderr: string; }>[] = [];
   students.forEach((s) => {
     if (s.githubID !== '') {
       const r = gitHubRepoUrlSSH(s, org, project);
@@ -69,11 +75,22 @@ export async function cloneAll(org, project, roster) {
     }
   });
 
-  await Promise.allSettled(clones).then((results) => {
-    results.forEach((result) => {
-      if (result.value) {
-        console.log(result.value.stderr.trim());
-      }
-    });
+  const results = await Promise.allSettled(clones)
+
+  results.forEach((result) => {
+    switch (result.status) {
+      case 'rejected':
+        if(result.reason){
+          console.log(result.reason);
+        }
+        break;
+      case 'fulfilled':
+        if(result.value){
+          console.log(result.value.stderr.trim())
+        }
+        break;
+      default:
+        console.log("Got an unknown case on a Promise!");
+    }
   });
 }

@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 import { createRequire } from 'node:module';
-import { cloneAll } from '../src/ghclass.mjs';
+import { cloneAll } from './ghclass.js';
 
-const require = createRequire(import.meta.url);
-const pkg = require('../package.json');
+const req = createRequire(import.meta.url);
+const pkg = req('../package.json');
 
 const program = new Command();
 
@@ -19,5 +19,5 @@ program
 program.parse(process.argv);
 const options = program.opts();
 
-await cloneAll(options.organization, options.assignment, options.roster);
+await cloneAll(options['organization'], options['assignment'], options['roster']);
 console.log('Done!');

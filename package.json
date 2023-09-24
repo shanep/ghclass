@@ -1,35 +1,44 @@
 {
   "name": "ghc",
-  "version": "1.0.0",
   "description": "Clone student repos created from classroom.github.com",
-  "main": "./src/main.mjs",
-  "bin": "./src/main.mjs",
-  "scripts": {
-    "test": "node --test",
-    "lint": "eslint ./src/*.js ./bin/*.js"
-  },
+  "version": "1.0.0",
+  "author": "Shane K. Panter",
+  "license": "MIT",
+  "homepage": "https://github.com/shanep/ghclass#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shanep/ghclass.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shanep/ghclass/issues"
   },
   "keywords": [
     "education",
     "classroom.github.com"
   ],
-  "author": "Shane K. Panter",
-  "license": "MIT",
-  "type": "module",
-  "bugs": {
-    "url": "https://github.com/shanep/ghclass/issues"
+  "exports": {
+    ".": "./dist/index.js"
   },
-  "homepage": "https://github.com/shanep/ghclass#readme",
+  "type": "module",
+  "scripts": {
+    "start": "npx ts-node-esm ./src/index.ts",
+    "build": "tsc -p .",
+    "test": "node --test",
+    "bundle": "npm run format:write && npm run package",
+    "format:write": "prettier --write **/*.ts",
+    "format:check": "prettier --check **/*.ts",
+    "package": "ncc build src/index.ts --license licenses.txt",
+    "package:watch": "npm run package -- --watch",
+    "all": "npm run format:write && npm run lint && npm run test && npm run package"
+  },
   "dependencies": {
     "commander": "^11.0.0",
     "csv-parse": "^5.5.0"
   },
   "devDependencies": {
-    "eslint": "^8.50.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.28.1"
+    "@types/node": "^20.6.3",
+    "@vercel/ncc": "^0.38.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
   }
 }

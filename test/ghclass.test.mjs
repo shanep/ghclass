@@ -2,7 +2,7 @@ import assert from 'node:assert';
 import { test } from 'node:test';
 import fs from 'node:fs/promises';
 
-import * as ghclass from './ghclass.mjs';
+import * as ghclass from '../src/ghclass';
 
 const csvIndividual = `"identifier","github_username","github_id","name"
 "shanepanter@u.boisestate.edu","BSU-ShanePanter","123456","shane"
