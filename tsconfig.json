@@ -6,7 +6,8 @@
     "rootDir": "./src",
     "moduleResolution": "NodeNext",
     "allowJs": false,
-    "outDir": "build",
+    "outDir": "lib",
+    "declaration": true,
     "noEmit": false,
     "forceConsistentCasingInFileNames": true,
     /* Type Checking */
@@ -24,6 +25,7 @@
     "./dist",
     "./node_modules",
     "./test",
-    "./coverage"
+    "./coverage",
+    "./lib"
   ]
 }
