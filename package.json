@@ -20,7 +20,7 @@
     ".": "./lib/ghclass.js"
   },
   "bin": {
-    "ghc": "./lib/index.js"
+    "ghc": "lib/index.js"
   },
   "files": [
     "/lib"
