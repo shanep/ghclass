@@ -21,9 +21,9 @@
   },
   "type": "module",
   "scripts": {
-    "start": "npx ts-node-esm ./src/index.ts",
+    "start": "tsx ./src/index.ts",
     "build": "tsc -p .",
-    "test": "node --test",
+    "test": "node --loader tsx --test test/*.test.ts",
     "bundle": "npm run format:write && npm run package",
     "format:write": "prettier --write **/*.ts",
     "format:check": "prettier --check **/*.ts",
@@ -39,6 +39,7 @@
     "@types/node": "^20.6.3",
     "@vercel/ncc": "^0.38.0",
     "ts-node": "^10.9.1",
+    "tsx": "^3.13.0",
     "typescript": "^5.2.2"
   }
 }

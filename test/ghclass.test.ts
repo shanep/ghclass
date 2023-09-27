@@ -2,7 +2,7 @@ import assert from 'node:assert';
 import { test } from 'node:test';
 import fs from 'node:fs/promises';
 
-import * as ghclass from '../src/ghclass';
+import * as ghclass from '../src/ghclass.js';
 
 const csvIndividual = `"identifier","github_username","github_id","name"
 "shanepanter@u.boisestate.edu","BSU-ShanePanter","123456","shane"
@@ -19,14 +19,14 @@ test('individual student roster from csv', async (t) => {
         githubUserName: 'BSU-ShanePanter',
         githubID: '123456',
         name: 'shane',
-        team: null,
+        team: undefined,
       },
       {
         email: 'student1@u.boisestate.edu',
         githubUserName: 'student1',
         githubID: '111111',
         name: 'student',
-        team: null,
+        team: undefined,
       },
     ],
   );
@@ -40,7 +40,7 @@ test('individual construct repo url from student', () => {
     githubUserName: 'student1',
     githubID: '111111',
     name: 'student',
-    team: null,
+    team: undefined,
   };
   const actual = ghclass.gitHubRepoUrlSSH(student, org, project);
   const expected = 'git@github.com:shanep-classroom/project1-student1 student1@u.boisestate.edu';

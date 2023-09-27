@@ -6,10 +6,8 @@
     "rootDir": "./src",
     "moduleResolution": "NodeNext",
     "allowJs": false,
-    /* Emit */
-    "outDir": "lib",
-    "sourceMap": true,
-    "esModuleInterop": true,
+    "outDir": "build",
+    "noEmit": false,
     "forceConsistentCasingInFileNames": true,
     /* Type Checking */
     "strict": true,
