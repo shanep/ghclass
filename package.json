@@ -1,7 +1,7 @@
 {
-  "name": "@shanepanter/ghclass",
+  "name": "ghclass",
   "description": "Clone student repos created from classroom.github.com",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "author": "Shane K. Panter",
   "license": "MIT",
   "homepage": "https://github.com/shanep/ghclass#readme",

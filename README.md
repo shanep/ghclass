@@ -65,13 +65,3 @@ assignment into a folder named after the team.
 ## Docs
 
 - [Setting up Classrooms](https://shanepanter.com/teaching/github-classroom-instructor.html)
-
-## Fun Details
-
-This project also demonstrates the following features that students will learn about in several classes
-
-- [ ] Continuous Integration (CI)
-- [ ] Continuous Deployment (CD)
-- [ ] Unit testing with Function Mocks
-- [ ] Code coverage
-- [ ] Github Releases
