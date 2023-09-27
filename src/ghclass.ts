@@ -67,8 +67,8 @@ export async function cloneAll(org: string, project: string, roster: string) {
   students.forEach((s) => {
     if (s.githubID !== '') {
       const r = gitHubRepoUrlSSH(s, org, project);
-      clones.push(execp(`git clone ${r}`).catch(() => {
-        console.log(`-->student: ${s.email} has not accepted the assignment`);
+      clones.push(execp(`gh repo clone ${r}`).catch((err) => {
+        console.log(err);
       }));
     } else {
       console.log(`student: ${s.email} has not accepted the assignment`);

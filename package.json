@@ -1,5 +1,5 @@
 {
-  "name": "ghc",
+  "name": "@shanepanter/ghclass",
   "description": "Clone student repos created from classroom.github.com",
   "version": "1.0.0",
   "author": "Shane K. Panter",
