@@ -13,7 +13,7 @@ export type Student = {
   githubUserName: string | undefined,
   githubID: string | undefined,
   name: string | undefined,
-  team: string | undefined,
+  team: string | undefined
 };
 
 /**
@@ -62,8 +62,9 @@ export async function loadRosterCSV(path: string): Promise<Student[]> {
  * @param {string} org The github organization
  * @param {string} project The project name
  * @param {string} roster The path to the class roster
+ * 
  */
-export async function cloneAll(org: string, project: string, roster: string) {
+export async function cloneAll(org: string, project: string, roster: string) : Promise<number> {
   console.log(`Clone with options: ${org} ${project} ${roster}`);
   const students = await loadRosterCSV(roster);
   const clones: Promise<void | { stdout: string; stderr: string; }>[] = [];
@@ -79,6 +80,7 @@ export async function cloneAll(org: string, project: string, roster: string) {
   });
 
   const results = await Promise.allSettled(clones)
+  let count = 0;
 
   results.forEach((result) => {
     switch (result.status) {
@@ -89,6 +91,7 @@ export async function cloneAll(org: string, project: string, roster: string) {
         break;
       case 'fulfilled':
         if(result.value){
+          count++;
           console.log(result.value.stderr.trim())
         }
         break;
@@ -96,4 +99,5 @@ export async function cloneAll(org: string, project: string, roster: string) {
         console.log("Got an unknown case on a Promise!");
     }
   });
+  return count;
 }

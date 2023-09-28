@@ -1,9 +1,10 @@
 import assert from 'node:assert';
 import { test } from 'node:test';
+import { rmSync } from 'node:fs';
 
 import * as ghclass from '../src/ghclass.js';
 
-test('individual student roster from csv', async (t) => {
+test('individual student roster from csv', async () => {
   const result  = await ghclass.loadRosterCSV('test/data/individual.csv');
   assert.deepStrictEqual(
     result,
@@ -42,7 +43,7 @@ test('individual construct repo url from student', () => {
 });
 
 
-test('group student roster from csv', async (t) => {
+test('group student roster from csv', async () => {
   const result = await ghclass.loadRosterCSV('test/data/group.csv');
   assert.deepStrictEqual(
     result,
@@ -79,3 +80,13 @@ test('group construct repo url from student', () => {
   const expected = 'git@github.com:shanep-classroom/project1-team-002 team-002';
   assert.strictEqual(actual, expected);
 });
+
+
+/* test('test live download with roster', async () => {
+  const result = await ghclass.cloneAll('shanep-githubclassroom-testing', 'lab01','test/data/live.csv');
+  assert.equal(result, 1);
+  
+  rmSync("shanepanter@u.boisestate.edu", { recursive: true, force: true });
+
+});
+ */
