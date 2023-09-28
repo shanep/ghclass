@@ -29,7 +29,7 @@
   ],
   "type": "module",
   "scripts": {
-    "start": "tsx ./src/index.ts",
+    "start": "tsx ./src/cli.ts",
     "test": "node --loader tsx --test test/*.test.ts",
     "test:coverage": "c8 --all --src src npm test",
     "build": "tsc -p .",

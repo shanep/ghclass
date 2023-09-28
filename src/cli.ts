@@ -16,6 +16,9 @@ program
   .requiredOption('-o, --organization <name>', 'Name of your Github organization')
   .requiredOption('-a, --assignment <name> ', 'Name of the assignment');
 
+if (!process.argv.slice(2).length) {
+  program.help();
+}
 program.parse(process.argv);
 const options = program.opts();
 
