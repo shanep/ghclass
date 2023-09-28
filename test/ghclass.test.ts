@@ -1,16 +1,10 @@
 import assert from 'node:assert';
 import { test } from 'node:test';
-import fs from 'node:fs/promises';
 
 import * as ghclass from '../src/ghclass.js';
 
-const csvIndividual = `"identifier","github_username","github_id","name"
-"shanepanter@u.boisestate.edu","BSU-ShanePanter","123456","shane"
-"student1@u.boisestate.edu","student1","111111","student"`;
-
 test('individual student roster from csv', async (t) => {
-  t.mock.method(fs, 'readFile', async () => csvIndividual);
-  const result = await ghclass.loadRosterCSV('test');
+  const result  = await ghclass.loadRosterCSV('test/data/individual.csv');
   assert.deepStrictEqual(
     result,
     [
@@ -47,13 +41,9 @@ test('individual construct repo url from student', () => {
   assert.strictEqual(actual, expected);
 });
 
-const csvGroup = `"identifier","github_username","github_id","name","group_name"
-"shanepanter@u.boisestate.edu","BSU-ShanePanter","123456","shane","team-001"
-"student1@u.boisestate.edu","student1","111111","student","team 002"`;
 
 test('group student roster from csv', async (t) => {
-  t.mock.method(fs, 'readFile', async () => csvGroup);
-  const result = await ghclass.loadRosterCSV('test');
+  const result = await ghclass.loadRosterCSV('test/data/group.csv');
   assert.deepStrictEqual(
     result,
     [

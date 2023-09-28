@@ -1,11 +1,14 @@
 import { parse } from 'csv-parse/sync';
-import fs from 'node:fs/promises';
+import * as fs from 'node:fs/promises';
 import { exec } from 'node:child_process';
-import util from 'node:util';
+import * as util from 'node:util';
 
 const execp = util.promisify(exec);
 
-type Student = {
+/**
+ * A student object that contains the information needed to clone a repo
+ */
+export type Student = {
   email: string | undefined,
   githubUserName: string | undefined,
   githubID: string | undefined,
@@ -29,7 +32,7 @@ export function gitHubRepoUrlSSH(student: Student, organization: string, project
  * Loads a roster that was exported from classrooms.github.com
  * and returns an array of student objects
  * @param {string} path Path to file
- * @return {Array} An array containing the all the students
+ * @return {Promise<Student[]>} An array containing the all the students
  */
 export async function loadRosterCSV(path: string): Promise<Student[]> {
   const fle = await fs.readFile(path, { encoding: 'utf-8' });
