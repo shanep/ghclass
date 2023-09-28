@@ -35,7 +35,7 @@
     "build": "tsc -p .",
     "dist": "ncc build src/cli.ts --license licenses.txt",
     "docs": "typedoc --media media src/*.ts",
-    "clean": "rimraf build dist lib coverage node_modules",
+    "clean": "git clean -xfd",
     "build:all": "npm run build && npm run dist",
     "test:all": "npm run test && npm run test:coverage",
     "package": "npm run test:all && npm run build:all && npm run docs"
@@ -48,7 +48,6 @@
     "@types/node": "^20.6.3",
     "@vercel/ncc": "^0.38.0",
     "c8": "^8.0.1",
-    "rimraf": "^5.0.5",
     "ts-node": "^10.9.1",
     "tsx": "^3.13.0",
     "typedoc": "^0.25.1",
