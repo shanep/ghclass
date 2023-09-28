@@ -33,8 +33,8 @@ You can install this tool through npm with `npm install ghclass -g`
 After you have created your classroom on github and your students have all accepted their
 first assignment you need to [download the roster](https://docs.github.com/en/education/manage-coursework-with-github-classroom/teach-with-github-classroom/manage-classrooms#about-classroom-rosters) (classroom_roster.csv).
 
-![class roster image](img/class-roster.jpg)
-![assignment and org](img/assignment-org.jpg)
+![class roster image](media/class-roster.jpg)
+![assignment and org](media/assignment-org.jpg)
 
 ``` bash
 $ ghc --help
@@ -56,11 +56,11 @@ To download groups make sure and download your roster from classroom.github.com 
 This tool should automatically detect that the roster has group names and will download the
 assignment into a folder named after the team.
 
-![group names](img/group-names.jpg)
+![group names](media/group-names.jpg)
 
 ## Demo
 
-![demo](img/demo.gif)
+![demo](media/demo.gif)
 
 ## Docs
 
