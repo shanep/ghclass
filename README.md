@@ -1,8 +1,6 @@
 # ghclass
 
-[![Run all tests](https://github.com/shanep/ghclass/actions/workflows/run-tests.yml/badge.svg)](https://github.com/shanep/ghclass/actions/workflows/run-tests.yml)
-
-[![Publish to NPM](https://github.com/shanep/ghclass/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/shanep/ghclass/actions/workflows/npm-publish.yml)
+[![Run all tests](https://github.com/shanep/ghclass/actions/workflows/run-tests.yml/badge.svg)](https://github.com/shanep/ghclass/actions/workflows/run-tests.yml) [![Publish to NPM](https://github.com/shanep/ghclass/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/shanep/ghclass/actions/workflows/npm-publish.yml)
 
 These instructions will walk you through setup and downloading your students submissions.
 These instructions assume that you have already [configured a classroom](https://shanepanter.com/teaching/github-classroom-setup.html) and you are ready to get your students submissions.
