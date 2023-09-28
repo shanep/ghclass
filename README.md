@@ -26,7 +26,10 @@ downloaded to.
 
 ## Installing
 
-You can install this tool through npm with `npm install ghclass -g`
+- [Install Nodejs](https://nodejs.org/en/download)
+- Linux users can install node through their [package manager](https://nodejs.org/en/download/package-manager)
+
+Once node and npm are installed you can install globally with `npm install ghclass -g`.
 
 ## Using
 
