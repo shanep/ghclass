@@ -1,7 +1,7 @@
 {
   "name": "ghclass",
   "description": "Utilities for working with classroom.github.com",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "author": "Shane K. Panter",
   "license": "MIT",
   "homepage": "https://github.com/shanep/ghclass#readme",
