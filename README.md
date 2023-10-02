@@ -69,4 +69,4 @@ assignment into a folder named after the team.
 
 ## Docs
 
-- [Setting up Classrooms](https://shanepanter.com/teaching/github-classroom-instructor.html)
+- [Setting up Classrooms](https://shanepanter.com/teaching/github-classroom-setup.html)
