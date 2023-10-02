@@ -36,6 +36,7 @@ export function gitHubRepoUrlSSH(student: Student, organization: string, project
  */
 export async function loadRosterCSV(path: string): Promise<Student[]> {
   const fle = await fs.readFile(path, { encoding: 'utf-8' });
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const csv: Array<Array<string>> = parse(fle);
   const rval: Student[] = [];
   // Groups can have spaces in them and need to be replaced with -
@@ -62,7 +63,7 @@ export async function loadRosterCSV(path: string): Promise<Student[]> {
  * @param {string} org The github organization
  * @param {string} project The project name
  * @param {string} roster The path to the class roster
- * 
+ *
  */
 export async function cloneAll(org: string, project: string, roster: string) : Promise<number> {
   console.log(`Clone with options: ${org} ${project} ${roster}`);
@@ -75,7 +76,7 @@ export async function cloneAll(org: string, project: string, roster: string) : P
         console.log(err);
       }));
     } else {
-      var name = s.email?.trim() !== '' ? s.email : s.githubUserName;
+      const name = s.email?.trim() !== '' ? s.email : s.githubUserName;
       console.log(`student: ${name} has not accepted the assignment`);
     }
   });
