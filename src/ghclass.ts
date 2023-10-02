@@ -75,7 +75,8 @@ export async function cloneAll(org: string, project: string, roster: string) : P
         console.log(err);
       }));
     } else {
-      console.log(`student: ${s.email || s.githubUserName} has not accepted the assignment`);
+      var name = s.email?.trim() !== '' ? s.email : s.githubUserName;
+      console.log(`student: ${name} has not accepted the assignment`);
     }
   });
 
