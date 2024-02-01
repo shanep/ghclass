@@ -9,7 +9,7 @@ GitHub released and [official cli](https://github.com/github/gh-classroom) for c
 
 ## Configure GitHub Authorization
 
-You need to [Setup the gh command line app](https://shanepanter.com/cs155/configure-github.html) first. **AFTER** you have followed the [instructions](https://shanepanter.com/cs155/configure-github.html) you can confirm that set everything up correctly using the command `gh auth status`
+You need to Setup the gh command line app first. **AFTER** you have followed the [instructions](https://shanepanter.com/cs155/hw/hw1) you can confirm that set everything up correctly using the command `gh auth status`
 
 ```bash
 > gh auth status
